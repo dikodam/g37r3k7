@@ -12,17 +12,47 @@ namespace AntMe.Spieler.g37r3k7
         Nachname = "Konieczny"
     )]
     [Kaste(
-            Name = "Standard",
-            AngriffModifikator = 0,
-            EnergieModifikator = 0,
-            LastModifikator = 0,
-            ReichweiteModifikator = 0,
-            DrehgeschwindigkeitModifikator = 0,
-            GeschwindigkeitModifikator = 0,
-            SichtweiteModifikator = 0
-        )
+         Name = "Standard",
+         AngriffModifikator = 0,
+         EnergieModifikator = 0,
+         LastModifikator = 0,
+         ReichweiteModifikator = 0,
+         DrehgeschwindigkeitModifikator = 0,
+         GeschwindigkeitModifikator = 0,
+         SichtweiteModifikator = 0
+     ),
+     Kaste(
+         Name = "Scout",
+         AngriffModifikator = 0,
+         EnergieModifikator = 0,
+         LastModifikator = 0,
+         ReichweiteModifikator = 0,
+         DrehgeschwindigkeitModifikator = 0,
+         GeschwindigkeitModifikator = 0,
+         SichtweiteModifikator = 0
+     ),
+     Kaste(
+         Name = "Sammler",
+         AngriffModifikator = 0,
+         EnergieModifikator = 0,
+         LastModifikator = 0,
+         ReichweiteModifikator = 0,
+         DrehgeschwindigkeitModifikator = 0,
+         GeschwindigkeitModifikator = 0,
+         SichtweiteModifikator = 0
+     ),
+     Kaste(
+         Name = "Krieger",
+         AngriffModifikator = 0,
+         EnergieModifikator = 0,
+         LastModifikator = 0,
+         ReichweiteModifikator = 0,
+         DrehgeschwindigkeitModifikator = 0,
+         GeschwindigkeitModifikator = 0,
+         SichtweiteModifikator = 0
+     )
     ]
-    public class PoltergeistAmeise : Basisameise
+    public class Poltergeist : Basisameise
     {
         private Spielobjekt bau;
         private Spielobjekt reiseziel;
@@ -30,8 +60,23 @@ namespace AntMe.Spieler.g37r3k7
 
         public override string BestimmeKaste(Dictionary<string, int> anzahl)
         {
-            verhalten = new StandardVerhalten(this);
-            return verhalten.Name();
+            string kaste = new KasteBalancer(anzahl).BestimmeKaste();
+            switch (kaste)
+            {
+                case "Scout":
+                    verhalten = new ScoutVerhalten(this);
+                    break;
+                case "Krieger":
+                    verhalten = new KriegerVerhalten(this);
+                    break;
+                case "Sammler":
+                    verhalten = new SammlerVerhalten(this);
+                    break;
+                default:
+                    verhalten = new StandardVerhalten(this);
+                    break;
+            }
+            return kaste;
         }
 
         public override void RiechtFreund(Markierung markierung)
@@ -112,9 +157,7 @@ namespace AntMe.Spieler.g37r3k7
 
         public override void WirdMüde()
         {
-            BleibStehen();
-            Denke("MÜDE");
-            GeheZuBau();
+            verhalten.WirdMüde();
         }
 
         public override void IstGestorben(Todesart todesart)
@@ -124,8 +167,7 @@ namespace AntMe.Spieler.g37r3k7
 
         public new void GeheZuZiel(Spielobjekt ziel)
         {
-            var richtung = Koordinate.BestimmeRichtung(this, ziel);
-            DreheInRichtung(richtung);
+            DreheInRichtung(Koordinate.BestimmeRichtung(this, ziel));
             GeheGeradeaus();
         }
 

@@ -4,7 +4,6 @@ namespace AntMe.Spieler.g37r3k7
 {
     public abstract class Verhalten
     {
-        public abstract string Name();
         public abstract void Tick();
         public abstract void RiechtFreund(Markierung markierung);
         public abstract void Sieht(Obst obst);
