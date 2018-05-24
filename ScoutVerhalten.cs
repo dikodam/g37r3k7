@@ -4,26 +4,32 @@ namespace AntMe.Spieler.g37r3k7
 {
     public class ScoutVerhalten : Verhalten
     {
-        private Poltergeist ameise;
+        private Poltergeist poltergeist;
 
         public ScoutVerhalten(Poltergeist poltergeist)
         {
-            this.ameise = poltergeist;
+            this.poltergeist = poltergeist;
         }
+
+        #region basics
 
         public override void Tick()
         {
         }
 
-        public override void RiechtFreund(Markierung markierung)
+        public override void Wartet()
+        {
+        }
+
+        #endregion
+
+        #region scouting
+
+        public override void Sieht(Zucker zucker)
         {
         }
 
         public override void Sieht(Obst obst)
-        {
-        }
-
-        public override void Sieht(Zucker zucker)
         {
         }
 
@@ -35,6 +41,10 @@ namespace AntMe.Spieler.g37r3k7
         {
         }
 
+        public override void RiechtFreund(Markierung markierung)
+        {
+        }
+
         public override void SiehtFreund(Ameise ameise)
         {
         }
@@ -43,9 +53,9 @@ namespace AntMe.Spieler.g37r3k7
         {
         }
 
-        public override void Wartet()
-        {
-        }
+        #endregion
+
+        #region BLA
 
         public override void WirdAngegriffen(Ameise ameise)
         {
@@ -70,5 +80,7 @@ namespace AntMe.Spieler.g37r3k7
         public override void IstGestorben(Todesart todesart)
         {
         }
+
+        #endregion
     }
 }

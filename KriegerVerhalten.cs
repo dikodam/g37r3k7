@@ -4,11 +4,11 @@ namespace AntMe.Spieler.g37r3k7
 {
     public class KriegerVerhalten : Verhalten
     {
-        private Poltergeist ameise;
+        private Poltergeist poltergeist;
 
         public KriegerVerhalten(Poltergeist poltergeist)
         {
-            this.ameise = poltergeist;
+            this.poltergeist = poltergeist;
         }
 
         public override void Tick()

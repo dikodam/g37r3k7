@@ -4,15 +4,16 @@ namespace AntMe.Spieler.g37r3k7
 {
     public class StandardVerhalten : Verhalten
     {
-        private Poltergeist ameise;
+        private Poltergeist poltergeist;
 
-        public StandardVerhalten(Poltergeist ameise)
+        public StandardVerhalten(Poltergeist poltergeist)
         {
-            this.ameise = ameise;
+            this.poltergeist = poltergeist;
         }
 
         public override void Tick()
         {
+            poltergeist.Denke("OH SHIAT");
         }
 
         public override void RiechtFreund(Markierung markierung)
@@ -45,7 +46,7 @@ namespace AntMe.Spieler.g37r3k7
 
         public override void Wartet()
         {
-            ameise.GeheGeradeaus();
+            poltergeist.GeheGeradeaus();
         }
 
         public override void WirdAngegriffen(Ameise ameise)
