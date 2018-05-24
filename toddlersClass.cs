@@ -34,7 +34,6 @@ namespace AntMe.Spieler.g37r3k7
         {
             verhalten = new StandardVerhalten(this);
             return verhalten.Name();
-            
         }
 
         public override void RiechtFreund(Markierung markierung)
