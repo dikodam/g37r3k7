@@ -4,9 +4,9 @@ namespace AntMe.Spieler.g37r3k7
 {
     public class StandardVerhalten : Verhalten
     {
-        private ToddlersClass ameise;
+        private PoltergeistAmeise ameise;
 
-        public StandardVerhalten(ToddlersClass ameise)
+        public StandardVerhalten(PoltergeistAmeise ameise)
         {
             this.ameise = ameise;
         }

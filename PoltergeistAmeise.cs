@@ -22,10 +22,8 @@ namespace AntMe.Spieler.g37r3k7
             SichtweiteModifikator = 0
         )
     ]
-    public class ToddlersClass : Basisameise
+    public class PoltergeistAmeise : Basisameise
     {
-        //private StandardVerhalten verhalten;
-
         private Spielobjekt bau;
         private Spielobjekt reiseziel;
         private Verhalten verhalten;
