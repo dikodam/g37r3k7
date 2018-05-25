@@ -19,6 +19,7 @@ namespace AntMe.Spieler.g37r3k7
 
         public override void Wartet()
         {
+            poltergeist.GeheGeradeaus();
         }
 
         #endregion
@@ -27,18 +28,23 @@ namespace AntMe.Spieler.g37r3k7
 
         public override void Sieht(Zucker zucker)
         {
+            poltergeist.SprüheMarkierung(poltergeist.ZUCKER + zucker.Menge, 1000);
         }
 
         public override void Sieht(Obst obst)
         {
+            poltergeist.SprüheMarkierung(poltergeist.OBST + obst.Menge, 1000);
         }
 
         public override void SiehtFeind(Ameise ameise)
         {
+            poltergeist.SprüheMarkierung(poltergeist.FEINDAMEISE, 1000);
         }
 
         public override void SiehtFeind(Wanze wanze)
         {
+            poltergeist.SprüheMarkierung(poltergeist.WANZE, 1000);
+            
         }
 
         public override void RiechtFreund(Markierung markierung)

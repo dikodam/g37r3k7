@@ -23,19 +23,19 @@ namespace AntMe.Spieler.g37r3k7
      ),
      Kaste(
          Name = "Scout",
-         AngriffModifikator = 0,
-         EnergieModifikator = 0,
-         LastModifikator = 0,
+         AngriffModifikator = -1,
+         EnergieModifikator = -1,
+         LastModifikator = -1,
          ReichweiteModifikator = 0,
-         DrehgeschwindigkeitModifikator = 0,
-         GeschwindigkeitModifikator = 0,
-         SichtweiteModifikator = 0
+         DrehgeschwindigkeitModifikator = -1,
+         GeschwindigkeitModifikator = 2,
+         SichtweiteModifikator = 2
      ),
      Kaste(
          Name = "Sammler",
-         AngriffModifikator = 0,
-         EnergieModifikator = 0,
-         LastModifikator = 0,
+         AngriffModifikator = -1,
+         EnergieModifikator = -1,
+         LastModifikator = 2,
          ReichweiteModifikator = 0,
          DrehgeschwindigkeitModifikator = 0,
          GeschwindigkeitModifikator = 0,
@@ -58,6 +58,11 @@ namespace AntMe.Spieler.g37r3k7
         private Spielobjekt reiseziel;
         private Verhalten verhalten;
 
+        public int ZUCKER => 100000000;
+        public int OBST => 200000000;
+        public int FEINDAMEISE => 300000000;
+        public int WANZE => 400000000;
+
         public override string BestimmeKaste(Dictionary<string, int> anzahl)
         {
             string kaste = new KasteBalancer(anzahl).BestimmeKaste();
@@ -76,6 +81,7 @@ namespace AntMe.Spieler.g37r3k7
                     verhalten = new StandardVerhalten(this);
                     break;
             }
+
             return kaste;
         }
 

@@ -6,23 +6,23 @@ namespace AntMe.Spieler.g37r3k7
 {
     public class KasteBalancer
     {
-        private readonly Dictionary<string, int> kasten;
+        private readonly Dictionary<string, int> anzahl;
 
-        public KasteBalancer(Dictionary<string, int> kasten)
+        public KasteBalancer(Dictionary<string, int> anzahl)
         {
-            this.kasten = kasten;
+            this.anzahl = anzahl;
         }
 
         public string BestimmeKaste()
         {
             var gesamt =
-                (from kvPair in kasten
+                (from kvPair in anzahl
                     select kvPair.Value)
                 .Aggregate((x, y) => x + y);
 
-            var scoutAnteil = (kasten["Scout"] * 1.0) / gesamt;
+            var scoutAnteil = (anzahl["Scout"] * 1.0) / gesamt;
 
-            return scoutAnteil < 0.2 ? "Scout" : "Sammler";
+            return (anzahl["Scout"] < 10 || scoutAnteil < 0.2) ? "Scout" : "Sammler";
         }
     }
 }
