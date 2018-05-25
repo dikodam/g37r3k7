@@ -37,9 +37,9 @@ namespace AntMe.Spieler.g37r3k7
          EnergieModifikator = -1,
          LastModifikator = 2,
          ReichweiteModifikator = 0,
-         DrehgeschwindigkeitModifikator = 0,
-         GeschwindigkeitModifikator = 0,
-         SichtweiteModifikator = 0
+         DrehgeschwindigkeitModifikator = -1,
+         GeschwindigkeitModifikator = 2,
+         SichtweiteModifikator = -1
      ),
      Kaste(
          Name = "Krieger",
@@ -55,13 +55,10 @@ namespace AntMe.Spieler.g37r3k7
     public class Poltergeist : Basisameise
     {
         private Spielobjekt bau;
-        private Spielobjekt reiseziel;
+        public Spielobjekt Ziel { get; set; }
         private Verhalten verhalten;
 
-        public int ZUCKER => 100000000;
-        public int OBST => 200000000;
-        public int FEINDAMEISE => 300000000;
-        public int WANZE => 400000000;
+        
 
         public override string BestimmeKaste(Dictionary<string, int> anzahl)
         {
@@ -133,12 +130,7 @@ namespace AntMe.Spieler.g37r3k7
 
         private void initBau()
         {
-            if (bau == null)
-            {
-                (this as Basisameise).GeheZuBau();
-                bau = Ziel;
-                BleibStehen();
-            }
+            
         }
 
         public override void WirdAngegriffen(Ameise ameise)
@@ -173,12 +165,14 @@ namespace AntMe.Spieler.g37r3k7
 
         public new void GeheZuZiel(Spielobjekt ziel)
         {
+            Ziel = ziel;
             DreheInRichtung(Koordinate.BestimmeRichtung(this, ziel));
             GeheGeradeaus();
         }
 
         public new void GeheZuBau()
         {
+            initBau();
             GeheZuZiel(bau);
         }
     }
