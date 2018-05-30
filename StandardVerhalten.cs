@@ -11,6 +11,8 @@ namespace AntMe.Spieler.g37r3k7
             this.poltergeist = poltergeist;
         }
 
+        public override string Name() => "Standard";
+
         public override void Tick()
         {
             poltergeist.Denke("OH SHIAT");

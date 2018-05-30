@@ -6,12 +6,15 @@ namespace AntMe.Spieler.g37r3k7
     public class ScoutVerhalten : Verhalten
     {
         private Poltergeist poltergeist;
+        private Marker marker;
 
         public ScoutVerhalten(Poltergeist poltergeist)
         {
             this.poltergeist = poltergeist;
+            this.marker = new Marker();
         }
 
+        public override string Name() => "Scout";
         #region basics
 
         public override void Tick()
@@ -29,22 +32,22 @@ namespace AntMe.Spieler.g37r3k7
 
         public override void Sieht(Zucker zucker)
         {
-            poltergeist.SprüheMarkierung(((int) Marker.ZUCKER_GESEHEN) + zucker.Menge, 1000);
+            poltergeist.SprüheMarkierung(marker.ZUCKER_GESEHEN + zucker.Menge, marker.RANGE);
         }
 
         public override void Sieht(Obst obst)
         {
-            poltergeist.SprüheMarkierung(((int) Marker.OBST_GESEHEN) + obst.Menge, 1000);
+            // poltergeist.SprüheMarkierung(marker.OBST_GESEHEN + obst.Menge, marker.RANGE);
         }
 
         public override void SiehtFeind(Ameise ameise)
         {
-            poltergeist.SprüheMarkierung(((int) Marker.FEINDAMEISE_GESEHEN), 1000);
+            // poltergeist.SprüheMarkierung(marker.FEINDAMEISE_GESEHEN, marker.RANGE);
         }
 
         public override void SiehtFeind(Wanze wanze)
         {
-            poltergeist.SprüheMarkierung(((int) Marker.WANZE_GESEHEN), 1000);
+            // poltergeist.SprüheMarkierung(marker.WANZE_GESEHEN, marker.RANGE);
         }
 
         public override void RiechtFreund(Markierung markierung)

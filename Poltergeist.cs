@@ -56,30 +56,20 @@ namespace AntMe.Spieler.g37r3k7
     {
         private Spielobjekt bau;
         public Spielobjekt Ziel { get; set; }
+
+        public bool IstVollBeladen => AktuelleLast == MaximaleLast;
+        public bool IstNichtVollBeladen => !(IstVollBeladen);
+        public bool MussSchlafen => ZurückgelegteStrecke >= (0.4 * Reichweite);
+
         private Verhalten verhalten;
 
-        
 
         public override string BestimmeKaste(Dictionary<string, int> anzahl)
         {
-            string kaste = new KasteBalancer(anzahl).BestimmeKaste();
-            switch (kaste)
-            {
-                case "Scout":
-                    verhalten = new ScoutVerhalten(this);
-                    break;
-                case "Krieger":
-                    verhalten = new KriegerVerhalten(this);
-                    break;
-                case "Sammler":
-                    verhalten = new SammlerVerhalten(this);
-                    break;
-                default:
-                    verhalten = new StandardVerhalten(this);
-                    break;
-            }
+            verhalten = new KasteBalancer(anzahl).BestimmeKaste(this);
 
-            return kaste;
+
+            return verhalten.Name();
         }
 
         public override void RiechtFreund(Markierung markierung)
@@ -130,7 +120,9 @@ namespace AntMe.Spieler.g37r3k7
 
         private void initBau()
         {
-            
+            (this as Basisameise).GeheZuBau();
+            bau = Ziel;
+            BleibStehen();
         }
 
         public override void WirdAngegriffen(Ameise ameise)

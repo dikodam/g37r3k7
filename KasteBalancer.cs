@@ -13,7 +13,7 @@ namespace AntMe.Spieler.g37r3k7
             this.anzahl = anzahl;
         }
 
-        public string BestimmeKaste()
+        public Verhalten BestimmeKaste(Poltergeist poltergeist)
         {
             var gesamt =
                 (from kvPair in anzahl
@@ -22,7 +22,12 @@ namespace AntMe.Spieler.g37r3k7
 
             var scoutAnteil = (anzahl["Scout"] * 1.0) / gesamt;
 
-            return (anzahl["Scout"] < 10 || scoutAnteil < 0.2) ? "Scout" : "Sammler";
+            if (anzahl["Scout"] < 5 || scoutAnteil < 0.2)
+            {
+                return new ScoutVerhalten(poltergeist);
+            }
+
+            return new SammlerVerhalten(poltergeist);
         }
     }
 }

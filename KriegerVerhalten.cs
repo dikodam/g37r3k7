@@ -6,10 +6,13 @@ namespace AntMe.Spieler.g37r3k7
     {
         private Poltergeist poltergeist;
 
+
         public KriegerVerhalten(Poltergeist poltergeist)
         {
             this.poltergeist = poltergeist;
         }
+
+        public override string Name() => "Krieger";
 
         public override void Tick()
         {
